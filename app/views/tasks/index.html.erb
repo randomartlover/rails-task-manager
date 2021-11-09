@@ -1,6 +1,10 @@
 <h1>My tasks</h1>
 <% @tasks.each do |task| %>
 <p><%=task.completed%>
-<%=link_to(task.title, task_path(task))%></p>
+<%= link_to task.title, task_path(task) %></p>
+<%= link_to 'delete',
+            task_path(task),
+            method: :delete,
+            data: {confirm: "Delete #{task.title}"} %></p>
 <% end %>
-<%=link_to("Add a new task", new_task_path)%></p>
+<%= link_to("Add a new task", new_task_path)%></p>
