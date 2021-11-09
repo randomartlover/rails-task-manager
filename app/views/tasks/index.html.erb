@@ -1,10 +1,18 @@
-<h1>My tasks</h1>
+<h1 class="mb-4">My tasks</h1>
 <% @tasks.each do |task| %>
-<p><%=task.completed%>
-<%= link_to task.title, task_path(task) %></p>
-<%= link_to 'delete',
-            task_path(task),
-            method: :delete,
-            data: {confirm: "Delete #{task.title}"} %></p>
+  <div>
+    <i class="fa <%= task.completed ? 'fa-check-square-o' : "fa-square-o" %>" aria-hidden="true"></i>
+    <%= link_to task.title, task_path(task), class: "text-dark-blue" %>
+    •
+    <%= link_to task_path(task),method: :delete, data: {confirm: "Delete #{task.title}"}, class: "text-dark-blue" do %>
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+    <% end %>
+  </div>
 <% end %>
-<%= link_to("Add a new task", new_task_path)%></p>
+<hr>
+<div class='d-flex align-items-baseline mt-2'>
+  <i class="fa fa-plus mr-1 text-dark-blue" aria-hidden="true"></i>
+  <%= link_to new_task_path do%>
+    <p class="text-dark-blue">Add New Task</p>
+  <% end %>
+</div>

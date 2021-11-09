@@ -1,0 +1,12 @@
+<%= simple_form_for(@task) do |t| %>
+  <%= t.label :title %>
+  <%= t.text_field :title %>
+  <%= t.label :details %>
+  <%= t.text_area :details %>
+  <% unless @task.new_record?%>
+  <%= t.label :completed %>
+  <%= t.check_box :completed %>
+  <% end %>
+  <%= t.submit %>
+<% end %>
+<%= link_to('Back to list', tasks_path) %>

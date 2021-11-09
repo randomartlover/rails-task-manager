@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @new_task = Task.new({ title: params[:task][:title], details: params[:task][:details] })
+    @new_task = Task.new(task_params)
     @new_task.save
     redirect_to task_path(@new_task)
   end
@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    @task.update(title: params[:task][:title], details: params[:task][:details], completed: params[:task][:completed])
+    @task.update(task_params)
     redirect_to task_path(@task)
   end
 
@@ -28,9 +28,9 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-  # def restaurant_params
-  #   params.require(:restaurant).permit(:name, :address, :rating)
-  # end
+  def task_params
+    params.require(:task).permit(:title, :details, :completed)
+  end
 
   def find_task
     @task = Task.find(params[:id])
